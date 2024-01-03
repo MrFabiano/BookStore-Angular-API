@@ -11,11 +11,11 @@ export class CategoryService implements OnInit{
 
   baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   findAll(): Observable<Category[]>{
     const url = `${this.baseUrl}/category/`
-    return this.http.get<Category[]>(url);
+    return this.httpClient.get<Category[]>(url);
   }
 
   ngOnInit(): void {}
