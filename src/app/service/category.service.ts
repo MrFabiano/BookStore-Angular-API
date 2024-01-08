@@ -2,28 +2,41 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../model/category.model';
-import { environment } from '../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppConstants } from '../../environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService implements OnInit{
 
-  baseUrl: string = environment.baseUrl;
+  //baseUrl: string = environment.baseUrl;
 
   constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
 
   findAll(): Observable<Category[]>{
-    const url = `${this.baseUrl}/category/`
+    const url = `${AppConstants.baseServidor}/category/`
     return this.httpClient.get<Category[]>(url);
   }
 
+  findById(id?: string): Observable<Category>{
+    const url = `${AppConstants.baseServidor}/category/${id}`
+    return this.httpClient.get<Category>(url);
+
+  }
+
   create(category: Category): Observable<Category>{
-    const url = `${this.baseUrl}/category/`
+    const url = `${AppConstants.baseServidor}/category/`
     return this.httpClient.post<Category>(url, category);
+  }
+
+  delete(id: string): Observable<void>{
+     const url = `${AppConstants.baseServidor}/category/${id}`
+     return this.httpClient.delete<void>(url);
   }
 
    message(str: string): void {
