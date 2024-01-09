@@ -7,26 +7,11 @@ import { CategoryDeleteComponent } from './components/views/category/category-de
 import { CategoryUpdateComponent } from './components/views/category/category-update/category-update.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'category',
-    component: CategoryReadComponent
-  },
-  {
-    path: 'category/create',
-    component: CategoryCreateComponent
-  },
-  {
-    path: 'category/delete/:id',
-    component: CategoryDeleteComponent
-  },
-  {
-    path: 'category/update/:id',
-    component: CategoryUpdateComponent
-  }
+  { path: '',component: HomeComponent},
+  { path: 'category', component: CategoryReadComponent},
+  { path: 'category/create',component: CategoryCreateComponent},
+  { path: 'category/delete/:id',component: CategoryDeleteComponent},
+  { path: 'category/update/:id', component: CategoryUpdateComponent},
 ];
 
 @NgModule({

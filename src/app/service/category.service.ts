@@ -34,6 +34,11 @@ export class CategoryService implements OnInit{
     return this.httpClient.post<Category>(url, category);
   }
 
+  update(category: Category): Observable<void>{
+    const url = `${AppConstants.baseServidor}/category/${category.id}`
+    return this.httpClient.put<void>(url, category);
+  }
+
   delete(id: string): Observable<void>{
      const url = `${AppConstants.baseServidor}/category/${id}`
      return this.httpClient.delete<void>(url);
