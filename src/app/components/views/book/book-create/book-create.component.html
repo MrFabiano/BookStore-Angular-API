@@ -3,18 +3,21 @@
 
     <mat-form-field class="form">
         <mat-label>Title</mat-label>
-        <input matInput  type="text" name="title" placeholder="Ex.Title" maxlength="50">
+        <input matInput [formControl]="title" required type="text" name="title" placeholder="Ex.Title" maxlength="50">
+        <mat-error *ngIf="title.invalid">{{ getMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Name Author</mat-label>
-        <textarea matInput  type="text" name="name_author" placeholder="Ex.name author" maxlength="50"></textarea>
+        <input matInput [formControl]="name_author" required type="text" name="name_author" placeholder="Ex.name author" maxlength="50">
+        <mat-error *ngIf="name_author.invalid">{{ getMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field class="form">
         <mat-label>Text</mat-label>
-        <textarea matInput  type="text" name="text" placeholder="Ex. Text" maxlength="100000"></textarea>
+        <textarea matInput [formControl]="text" required type="text" name="text" placeholder="Ex. Text" maxlength="100000"></textarea>
+        <mat-error *ngIf="text.invalid">{{ getMessage() }}</mat-error>
     </mat-form-field>
     <div class="buttons">
-        <button  class="mat-elevation-z8" mat-stroked-button color="primary">Create</button>
+        <button [disabled]="getMessage()" class="mat-elevation-z8" mat-stroked-button color="primary">Create</button>
         <button  class="mat-elevation-z8" mat-stroked-button color="warn">Cancel</button>
     </div>
 </form>
