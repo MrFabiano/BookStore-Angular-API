@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../../model/book.model';
 import { BookService } from '../book/book.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -20,7 +20,9 @@ export class BookReadAllComponent implements OnInit{
 
   id_cat: string = '';
 
-  constructor(private service: BookService, private route: ActivatedRoute){}
+  constructor(private service: BookService, 
+    private route: ActivatedRoute, 
+    private router: Router){}
 
   ngOnInit(): void {
     this.id_cat = this.route.snapshot.paramMap.get('id_cat')!
@@ -32,5 +34,9 @@ export class BookReadAllComponent implements OnInit{
     this.service.findAllCategory(this.id_cat!).subscribe(response => {
      this.books = response;
     });
+  }
+
+  newBookCreate(): void{
+    this.router.navigate([`category/${this.id_cat}/books/create`]);
   }
 }
