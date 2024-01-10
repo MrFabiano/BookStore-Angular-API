@@ -36,7 +36,7 @@ export class CategoryUpdateComponent implements OnInit{
       this.service.message('Category create success');
     }, err => {
       console.log(err);
-      this.service.message(err.error.error);
+      this.service.message('Validate message correctly');
     }
     );
   }
