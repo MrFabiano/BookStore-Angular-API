@@ -7,6 +7,8 @@ import { CategoryDeleteComponent } from './components/views/category/category-de
 import { CategoryUpdateComponent } from './components/views/category/category-update/category-update.component';
 import { BookReadAllComponent } from './components/views/book-read-all/book-read-all.component';
 import { BookCreateComponent } from './components/views/book/book-create/book-create.component';
+import { BookUpdateComponent } from './components/views/book/book-update/book-update.component';
+import { BookDeleteComponent } from './components/views/book/book-delete/book-delete.component';
 
 const routes: Routes = [
   { path: '',component: HomeComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'category/update/:id', component: CategoryUpdateComponent},
   { path: 'category/:id_cat/books', component: BookReadAllComponent},
   { path: 'category/:id_cat/books/create', component: BookCreateComponent},
+  { path: 'category/:id_cat/books/:id/update', component: BookUpdateComponent},
+  { path: 'category/:id_cat/books/:id/delete', component: BookDeleteComponent},
 ];
 
 @NgModule({

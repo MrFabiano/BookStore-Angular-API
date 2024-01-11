@@ -1,19 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { Observable, from } from 'rxjs';
 import { Book } from '../../../../model/book.model';
+import { FormControl, Validators } from '@angular/forms';
 import { BookService } from '../book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-book-create',
-  templateUrl: './book-create.component.html',
-  styleUrl: './book-create.component.css'
+  selector: 'app-book-update',
+  templateUrl: './book-update.component.html',
+  styleUrl: './book-update.component.css'
 })
-export class BookCreateComponent implements OnInit{
+export class BookUpdateComponent implements OnInit {
+
 
   book: Book = {} as Book;
+  // book: Book = {
+  //    id: "",
+  //    title: "",
+  //    name_author: "",
+  //    text: ""
+  // };
+
   id_cat: string = '';
   id: string = '';
 
@@ -27,21 +33,31 @@ export class BookCreateComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
-   this.id_cat =  this.route.snapshot.paramMap.get('id_cat')!
+   this.id_cat =  this.route.snapshot.paramMap.get('id_cat')!;
+   this.book.id = this.route.snapshot.paramMap.get('id')!;
+   this.findById();
   }
 
-  create(): void {
-    this.service.create(this.book, this.id_cat).subscribe(response =>{
-      this.router.navigate([`category/${this.id_cat}/books`]);
-      this.service.message('Create book success');
+  findById(): void{
+    this.service.findById(this.book.id!).subscribe(responseData =>{
+      this.book.title = responseData.title;
+      this.book.name_author = responseData.name_author;
+      this.book.text = responseData.text;
       
-    }, err =>{
-      this.router.navigate([`category/${this.id_cat}/books`]);
-      this.service.message('Error create book');
-     
     });
   }
-  
+
+  update(): void{
+    this.service.update(this.book).subscribe(responseData =>{
+      this.router.navigate([`category/${this.id_cat}/books`]);
+      this.service.message('Update create success');
+    }, err =>{
+      this.router.navigate([`category/${this.id_cat}/books`]);
+      this.service.message('Update error create');
+    });
+    
+  }
+
   cancel(): void{
     this.router.navigate([`category/${this.id_cat}/books`]);
   }
@@ -60,7 +76,5 @@ export class BookCreateComponent implements OnInit{
   }
 
 }
-
-  
 
 
