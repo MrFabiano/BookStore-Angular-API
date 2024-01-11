@@ -23,7 +23,7 @@
                  <ng-container matColumnDef="book">
                   <th mat-header-cell *matHeaderCellDef>Read a Book</th>
                   <td mat-cell *matCellDef="let row">
-                    <a class="books">
+                    <a class="books" routerLink="{{ row.id }}/read">
                       <i class="material-icons">book</i>
                     </a>
                   </td>

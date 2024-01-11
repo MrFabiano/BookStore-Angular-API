@@ -17,30 +17,30 @@ export class BookService implements OnInit{
 
 
   create(book: Book, id_cat: string): Observable<Book> {
-    const url = `${AppConstants.baseServidor}/books?category=${id_cat}`
+    const url = `${AppConstants.baseUrl}/books?category=${id_cat}`
     return this.httpClient.post<Book>(url, book);
   }
 
 
   findAllCategory(id_cat: string): Observable<Book[]>{
-    const url = `${AppConstants.baseServidor}/books?category=${id_cat}`
+    const url = `${AppConstants.baseUrl}/books?category=${id_cat}`
     return this.httpClient.get<Book[]>(url);
 
   }
 
   findById(id: string): Observable<Book>{
-    const url = `${AppConstants.baseServidor}/books/${id}`
+    const url = `${AppConstants.baseUrl}/books/${id}`
     return this.httpClient.get<Book>(url);
 
   }
 
   update(book: Book): Observable<Book>{
-    const url = `${AppConstants.baseServidor}/books/${book.id}`
+    const url = `${AppConstants.baseUrl}/books/${book.id}`
     return this.httpClient.put<Book>(url, book);
   }
 
   delete(id: string): Observable<void>{
-    const url = `${AppConstants.baseServidor}/books/${id}`
+    const url = `${AppConstants.baseUrl}/books/${id}`
     return this.httpClient.delete<void>(url);
   }
 
